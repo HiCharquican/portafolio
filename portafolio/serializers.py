@@ -1,18 +1,51 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Post
+from .models import *
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class RolUsuarioSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups']
+        model = RolUsuario
+        fields = ['url', 'nombre', 'descripcion']
 
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class UsuarioSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Group
-        fields = ['url', 'name']
+        model = Usuario
+        fields = ['url', 'username', 'rut', 'nombre', 'apellido', 'email', 'direccion', 'region', 'rol_usuario']
+
+class EmpresaSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Empresa
+        fields = ['url', 'rut', 'nombre', 'telefono', 'email', 'direccion', 'region']
+
+class TareaSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Tarea
+        fields = ['url', 'nombre', 'descripcion']
+
+class UsuarioSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ['url', 'username', 'email']
+
+class UnidadSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Unidad
+        fields = ['url', 'nombre', 'descripcion', 'empresa']
+
+class FuncionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Funcion
+        fields = ['url', 'nombre', 'descripcion', 'fecha_inicio', 'fecha_termino', 'porcentaje_realizacion', 'creador', 'unidad']
+
+class UsuarioSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ['url', 'username', 'email']
+
+class TareaAsignadaSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = TareaAsignada
+        fields = ['url', 'fecha_inicio', 'fecha_termino', 'terminada', 'tarea', 'asigando', 'funcion']
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

@@ -3,8 +3,13 @@ from rest_framework import routers
 from portafolio import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+router.register(r'roles', views.RolUsuarioViewSet)
+router.register(r'usuarios', views.UsuarioViewSet)
+router.register(r'empresas', views.EmpresaViewSet)
+router.register(r'tareas', views.TareaViewSet)
+router.register(r'unidades', views.UnidadViewSet)
+router.register(r'funciones', views.FuncionViewSet)
+router.register(r'tareas/asignadas', views.TareaAsignadaViewSet)
 router.register(r'posts', views.PostViewSet)
 
 # Wire up our API using automatic URL routing.
