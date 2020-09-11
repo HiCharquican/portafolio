@@ -1,53 +1,43 @@
 from rest_framework import serializers
+from django.contrib.auth.models import Group
 from .models import *
 
-
-class RolUsuarioSerializer(serializers.HyperlinkedModelSerializer):
+class GroupSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RolUsuario
-        fields = ['url', 'nombre', 'descripcion']
+        model = Group
+        fields = '__all__'
 
-class UsuarioSerializer(serializers.HyperlinkedModelSerializer):
+class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['url', 'username', 'rut', 'nombre', 'apellido', 'email', 'direccion', 'region', 'rol_usuario']
+        fields = ['url', 'username', 'password', 'rut','nombre', 'apellido', 'email', 'telefono', 'direccion', 'region', 'rol_usuario']
 
-class EmpresaSerializer(serializers.HyperlinkedModelSerializer):
+class EmpresaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Empresa
-        fields = ['url', 'rut', 'nombre', 'telefono', 'email', 'direccion', 'region']
+        fields = '__all__'
 
-class TareaSerializer(serializers.HyperlinkedModelSerializer):
+class TareaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tarea
         fields = ['url', 'nombre', 'descripcion']
 
-class UsuarioSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Usuario
-        fields = ['url', 'username', 'email']
-
-class UnidadSerializer(serializers.HyperlinkedModelSerializer):
+class UnidadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Unidad
         fields = ['url', 'nombre', 'descripcion', 'empresa']
 
-class FuncionSerializer(serializers.HyperlinkedModelSerializer):
+class FuncionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Funcion
         fields = ['url', 'nombre', 'descripcion', 'fecha_inicio', 'fecha_termino', 'porcentaje_realizacion', 'creador', 'unidad']
 
-class UsuarioSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Usuario
-        fields = ['url', 'username', 'email']
-
-class TareaAsignadaSerializer(serializers.HyperlinkedModelSerializer):
+class TareaAsignadaSerializer(serializers.ModelSerializer):
     class Meta:
         model = TareaAsignada
         fields = ['url', 'fecha_inicio', 'fecha_termino', 'terminada', 'tarea', 'asigando', 'funcion']
 
-class PostSerializer(serializers.HyperlinkedModelSerializer):
+class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['author', 'title', 'text','created_date','published_date']

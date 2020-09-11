@@ -1,26 +1,17 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import AbstractUser
-
-from django.contrib.auth import get_user_model
-
-
-class RolUsuario(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.nombre
+from django.contrib.auth.models import AbstractUser, Group
 
 class Usuario(AbstractUser):
     rut = models.CharField(max_length=9)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     email = models.CharField(max_length=200)
+    telefono = models.IntegerField(default=0)
     direccion = models.CharField(max_length=200)
     region = models.CharField(max_length=200)
-    rol_usuario = models.CharField(max_length=200)
-
+    rol_usuario = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, null=True)
+    
     def __str__(self):
         return self.email
 

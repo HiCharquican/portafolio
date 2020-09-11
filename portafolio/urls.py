@@ -3,7 +3,7 @@ from rest_framework import routers
 from portafolio import views
 
 router = routers.DefaultRouter()
-router.register(r'roles', views.RolUsuarioViewSet)
+router.register(r'roles', views.GroupViewSet)
 router.register(r'usuarios', views.UsuarioViewSet)
 router.register(r'empresas', views.EmpresaViewSet)
 router.register(r'tareas', views.TareaViewSet)
