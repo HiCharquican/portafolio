@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import Group
 from .models import *
 from django.contrib.auth.models import Permission
+from django.contrib.auth.hashers import make_password
 
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,6 +21,10 @@ class UsuarioSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True}
         }
+
+    def create(self, validated_data):
+        validated_data['password'] = make_password(validated_data.get('password'))
+        return super(UsuarioSerializer, self).create(validated_data)
 
 class EmpresaSerializer(serializers.ModelSerializer):
     class Meta:
