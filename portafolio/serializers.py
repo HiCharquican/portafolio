@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from django.contrib.auth.models import Group
 from .models import *
+from django.contrib.auth.models import Permission
+
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = '__all__'
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,7 +16,10 @@ class GroupSerializer(serializers.ModelSerializer):
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['url', 'username', 'password', 'rut','nombre', 'apellido', 'email', 'telefono', 'direccion', 'region', 'rol_usuario']
+        fields = ['url', 'username', 'password', 'rut','nombre', 'apellido', 'email', 'telefono', 'direccion', 'region', 'rol_usuario','is_active']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
 
 class EmpresaSerializer(serializers.ModelSerializer):
     class Meta:

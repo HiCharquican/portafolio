@@ -9,7 +9,10 @@ class CustomUserAdmin(UserAdmin):
     add_form = UsuarioCreationForm
     form = UsuarioChangeForm
     model = UserAdmin
-    list_display = ['username', 'password', 'rut','nombre', 'apellido', 'email', 'telefono', 'direccion', 'region', 'rol_usuario']
+    list_display = ('username', 'is_staff', 'is_active',)
+    list_filter = ('username', 'is_staff', 'is_active',)
+    search_fields = ('username',)
+    ordering = ('username',)
 
 admin.site.register(Usuario, CustomUserAdmin)
 admin.site.register(Empresa)
