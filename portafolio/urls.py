@@ -1,6 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 from portafolio import views
+from rest_framework.authtoken import views as viewstoken
 
 router = routers.DefaultRouter()
 router.register(r'roles', views.GroupViewSet)
@@ -13,10 +14,10 @@ router.register(r'funciones', views.FuncionViewSet)
 router.register(r'tareas/asignadas', views.TareaAsignadaViewSet)
 router.register(r'posts', views.PostViewSet)
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
-    path('', include('rest_framework.urls', namespace='rest_framework')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('login/', viewstoken.obtain_auth_token),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('<token>/', views.CuttentToken),
+    path('logout/?<token>/', views.Logout),
 ]

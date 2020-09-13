@@ -4,6 +4,12 @@ from .models import *
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
 
+### TOKEN
+from django.http import JsonResponse
+from rest_framework.response  import Response
+from rest_framework  import status
+from rest_framework.authtoken.models import Token
+
 class PermissionViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
@@ -49,6 +55,16 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = [perm.IsAuthenticated]
 
+def CuttentToken(request, token):
+    data = list(Token.objects.filter(pk=token).values().get('user'))
+    return JsonResponse(data, safe=False)
     
-##permission_classes = [permissions.IsAuthenticated]
+def Logout(request, token, format = None):
+    if (Token.objects.filter(pk=token).values()):
+        Token.objects.filter(pk=token).delete()
+        return JsonResponse({'Correcto': 'Cierre de sesión completado'}, status=200)
+    else:
+        return JsonResponse({'Error': 'No hay usuario logeado'}, status=401)
+    
+
 
