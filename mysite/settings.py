@@ -5,9 +5,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = '2zq6oe)sne3ixx1)en$@h47am+5=*d$o+g%(-inhq181pvff2v'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','127.0.0.1:5500']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,6 +21,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+    #CORS
+    'corsheaders',
+
     #Apps locales
     'portafolio',
 ]
@@ -28,6 +31,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -101,6 +105,10 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
 }
+
+CORS_ORIGIN_WHITELIST = (
+    'http://127.0.0.1:5500',
+)
 
 LANGUAGE_CODE = 'es-es'
 

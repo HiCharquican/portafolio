@@ -50,13 +50,8 @@ class TareaAsignadaViewSet(viewsets.ModelViewSet):
     serializer_class = TareaAsignadaSerializer
     permission_classes = [perm.IsAuthenticated]
 
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = [perm.IsAuthenticated]
-
 def CuttentToken(request, token):
-    data = list(Token.objects.filter(pk=token).values().get('user'))
+    data = list(Token.objects.filter(pk=token).values())
     return JsonResponse(data, safe=False)
     
 def Logout(request, token, format = None):
