@@ -5,9 +5,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = '2zq6oe)sne3ixx1)en$@h47am+5=*d$o+g%(-inhq181pvff2v'
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '127.0.0.1:5500']
+ALLOWED_HOSTS = ['127.0.0.1', '127.0.0.1:5500', 'http://127.0.0.1:5501/']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -26,7 +26,6 @@ INSTALLED_APPS = [
 
     # Apps locales
     'portafolio',
-    'user.apps.UserConfig',
     'crispy_forms',
 ]
 
@@ -63,12 +62,8 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        << << << < HEAD
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-        == == == =
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        >>>>>> > master
+        'ENGINE': 'django.db.backends.sqlite3',
     }
 }
 
@@ -113,7 +108,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = (
-    'http://127.0.0.1:5500',
+    'http://127.0.0.1:5500', 'http://127.0.0.1:5501', 'http://127.0.0.1:8000'
 )
 
 LANGUAGE_CODE = 'es-es'
@@ -127,5 +122,6 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = ''
