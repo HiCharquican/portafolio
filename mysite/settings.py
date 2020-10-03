@@ -26,7 +26,6 @@ INSTALLED_APPS = [
 
     # Apps locales
     'portafolio',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
