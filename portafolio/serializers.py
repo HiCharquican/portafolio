@@ -21,7 +21,7 @@ class GroupSerializer(serializers.ModelSerializer):
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['url', 'username', 'password', 'rut','nombre', 'apellido', 'email', 'telefono', 'direccion', 'region', 'rol_usuario','is_active']
+        fields = ['url', 'id','username', 'password', 'rut','nombre', 'apellido', 'email', 'telefono', 'direccion', 'region', 'rol_usuario','is_active']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -29,6 +29,25 @@ class UsuarioSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data.get('password'))
         return super(UsuarioSerializer, self).create(validated_data)
+
+    def update(self, instance, validated_data):
+        validated_data['password'] = make_password(validated_data.get('password'))
+
+        instance.username = validated_data.get('username', instance.username)
+        instance.password = validated_data.get('password', instance.email)
+        instance.rut = validated_data.get('rut', instance.rut)
+        instance.nombre = validated_data.get('nombre', instance.nombre)
+        instance.apellido = validated_data.get('email', instance.apellido)
+        instance.email = validated_data.get('email', instance.email)
+        instance.telefono = validated_data.get('telefono', instance.telefono)
+        instance.direccion = validated_data.get('direccion', instance.direccion)
+        instance.region = validated_data.get('region', instance.region)
+        instance.rol_usuario = validated_data.get('rol_usuario', instance.rol_usuario)
+        instance.is_active = validated_data.get('is_active', instance.is_active)
+        instance.save()
+
+        return instance
+
 
 class EmpresaSerializer(serializers.ModelSerializer):
     class Meta:
