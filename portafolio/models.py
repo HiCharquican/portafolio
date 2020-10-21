@@ -12,7 +12,7 @@ class Usuario(AbstractUser):
     direccion = models.CharField(max_length=200)
     region = models.CharField(max_length=200)
     rol_usuario = models.ForeignKey(
-        Group, on_delete=models.CASCADE, default=2)
+        Group, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.username
