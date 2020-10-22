@@ -21,7 +21,7 @@ class GroupSerializer(serializers.ModelSerializer):
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['url', 'username', 'password', 'rut','nombre', 'apellido', 'email', 'telefono', 'direccion', 'region', 'rol_usuario','is_active']
+        fields = ['id', 'url', 'username', 'password', 'rut','nombre', 'apellido', 'email', 'telefono', 'direccion', 'region', 'rol_usuario','is_active']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -38,21 +38,25 @@ class EmpresaSerializer(serializers.ModelSerializer):
 class TareaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tarea
-        fields = ['url', 'nombre', 'descripcion']
+        fields = ['id', 'url', 'nombre', 'descripcion']
 
 class UnidadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Unidad
-        fields = ['url', 'nombre', 'descripcion', 'empresa']
+        fields = ['id', 'url', 'nombre', 'descripcion', 'empresa']
 
 class FuncionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Funcion
-        fields = ['url', 'nombre', 'descripcion', 'fecha_inicio', 'fecha_termino', 'porcentaje_realizacion', 'creador', 'unidad']
+        fields = ['id', 'url', 'nombre', 'descripcion', 'fecha_inicio', 'fecha_termino', 'porcentaje_realizacion', 'creador', 'unidad']
 
 class TareaAsignadaSerializer(serializers.ModelSerializer):
+    nombre_tarea = serializers.ReadOnlyField(source='tarea.nombre')
+    descripcion_tarea = serializers.ReadOnlyField(source='tarea.descripcion')
+
+
     class Meta:
         model = TareaAsignada
-        fields = ['url', 'fecha_inicio', 'fecha_termino', 'terminada', 'tarea', 'asigando', 'funcion']
+        fields = ['id', 'nombre_tarea', 'descripcion_tarea', 'url', 'fecha_inicio', 'fecha_termino', 'terminada', 'tarea', 'asignado', 'funcion']
 
 

@@ -12,7 +12,7 @@ class Usuario(AbstractUser):
     direccion = models.CharField(max_length=200)
     region = models.CharField(max_length=200)
     rol_usuario = models.ForeignKey(
-        Group, on_delete=models.CASCADE, default=2)
+        Group, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.username
@@ -65,8 +65,8 @@ class TareaAsignada(models.Model):
     fecha_termino = models.DateField()
     terminada = models.BooleanField(default=False)
     tarea = models.ForeignKey('Tarea', on_delete=models.CASCADE)
-    asigando = models.ForeignKey('Usuario', on_delete=models.CASCADE)
+    asignado = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     funcion = models.ForeignKey('Funcion', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.fecha_termino
+        return self.tarea.nombre
