@@ -57,9 +57,11 @@ def CuttentToken(request, token):
 def Logout(request, token, format = None):
     if (Token.objects.filter(pk=token).values()):
         Token.objects.filter(pk=token).delete()
-        return JsonResponse({'Correcto': 'Cierre de sesión completado'}, status=200)
+        return JsonResponse({'status': 200}, status=200)
     else:
-        return JsonResponse({'Error': 'No hay usuario logeado'}, status=401)
+        return JsonResponse({
+            'status': 400
+        }, status=400)
     
 
 
