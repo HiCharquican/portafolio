@@ -30,7 +30,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
         validated_data['password'] = make_password(validated_data.get('password'))
         return super(UsuarioSerializer, self).create(validated_data)
 
-        def update(self, instance, validated_data):
+    def update(self, instance, validated_data):
         validated_data['password'] = make_password(validated_data.get('password'))
 
         instance.username = validated_data.get('username', instance.username)
