@@ -57,21 +57,21 @@ class EmpresaSerializer(serializers.ModelSerializer):
 class TareaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tarea
-        fields = ['url', 'nombre', 'descripcion']
+        fields = ['url', 'id', 'nombre', 'descripcion']
 
 class UnidadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Unidad
-        fields = ['url', 'nombre', 'descripcion', 'empresa']
+        fields = ['url', 'id', 'nombre', 'descripcion', 'empresa']
 
 class FuncionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Funcion
-        fields = ['url', 'nombre', 'descripcion', 'fecha_inicio', 'fecha_termino', 'porcentaje_realizacion', 'creador', 'unidad']
+        fields = ['url', 'id', 'nombre', 'descripcion', 'fecha_inicio', 'fecha_termino', 'porcentaje_realizacion', 'creador', 'unidad']
 
 class TareaAsignadaSerializer(serializers.ModelSerializer):
     class Meta:
         model = TareaAsignada
-        fields = ['url', 'fecha_inicio', 'fecha_termino', 'terminada', 'tarea', 'asigando', 'funcion']
+        fields = ['url', 'id', 'fecha_inicio', 'fecha_termino', 'terminada', 'tarea', 'asigando', 'funcion']
 
 
