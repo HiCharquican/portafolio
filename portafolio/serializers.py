@@ -37,7 +37,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
         instance.password = validated_data.get('password', instance.email)
         instance.rut = validated_data.get('rut', instance.rut)
         instance.nombre = validated_data.get('nombre', instance.nombre)
-        instance.apellido = validated_data.get('email', instance.apellido)
+        instance.apellido = validated_data.get('apellido', instance.apellido)
         instance.email = validated_data.get('email', instance.email)
         instance.telefono = validated_data.get('telefono', instance.telefono)
         instance.direccion = validated_data.get('direccion', instance.direccion)
