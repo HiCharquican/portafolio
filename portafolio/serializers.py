@@ -34,7 +34,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
         validated_data['password'] = make_password(validated_data.get('password'))
 
         instance.username = validated_data.get('username', instance.username)
-        instance.password = validated_data.get('password', instance.email)
+        instance.password = validated_data.get('password', instance.password)
         instance.rut = validated_data.get('rut', instance.rut)
         instance.nombre = validated_data.get('nombre', instance.nombre)
         instance.apellido = validated_data.get('apellido', instance.apellido)
