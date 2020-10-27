@@ -1,4 +1,4 @@
 Django==3.1.1
 Djangorestframework==3.12.1
-mysqlclient-1.4.6-cp38-cp38-win32.whl
+cx_oracle
 django_cors_headers==3.5.0
