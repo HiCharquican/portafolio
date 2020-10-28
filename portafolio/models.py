@@ -53,7 +53,8 @@ class Funcion(models.Model):
     fecha_inicio = models.DateField()
     fecha_termino = models.DateField()
     porcentaje_realizacion = models.IntegerField()
-    creador = models.ForeignKey('Usuario', on_delete=models.CASCADE)
+    tarea = models.ForeignKey('Tarea', on_delete=models.CASCADE, blank=True, null=True)
+    usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     unidad = models.ForeignKey('Unidad', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -65,7 +66,7 @@ class TareaAsignada(models.Model):
     fecha_termino = models.DateField()
     terminada = models.BooleanField(default=False)
     tarea = models.ForeignKey('Tarea', on_delete=models.CASCADE)
-    asignado = models.ForeignKey('Usuario', on_delete=models.CASCADE)
+    usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     funcion = models.ForeignKey('Funcion', on_delete=models.CASCADE)
 
     def __str__(self):

@@ -60,18 +60,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
-    # 'default': {
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    # }
-    #  AWS BDD
     'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'orcl',
-        'USER': 'admin',
-        'PASSWORD': 'hola12345',
-        'HOST': 'database-1.cud6sfqn39fy.us-east-1.rds.amazonaws.com',
-        'PORT': '1521',}
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+    }
+    #  AWS BDD
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.oracle',
+    #     'NAME': 'orcl',
+    #     'USER': 'admin',
+    #     'PASSWORD': 'hola12345',
+    #     'HOST': 'database-1.cud6sfqn39fy.us-east-1.rds.amazonaws.com',
+    #     'PORT': '1521',}
 }
 
 AUTH_USER_MODEL = 'portafolio.Usuario'

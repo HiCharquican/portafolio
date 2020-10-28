@@ -64,16 +64,21 @@ class UnidadSerializer(serializers.ModelSerializer):
         fields = ['url', 'id', 'nombre', 'descripcion', 'empresa']
 
 class FuncionSerializer(serializers.ModelSerializer):
+    nombre_tarea = serializers.ReadOnlyField(source='tarea.nombre')
+    nombre_usuario = serializers.ReadOnlyField(source='usuario.username')
+    nombre_unidad = serializers.ReadOnlyField(source='unidad.nombre')
     class Meta:
         model = Funcion
-        fields = ['url', 'id', 'nombre', 'descripcion', 'fecha_inicio', 'fecha_termino', 'porcentaje_realizacion', 'creador', 'unidad']
+        fields = ['url', 'id', 'nombre', 'descripcion', 'fecha_inicio', 'fecha_termino', 'porcentaje_realizacion', 'tarea', 'nombre_tarea', 'usuario', 'nombre_usuario', 'unidad', 'nombre_unidad']
 
 class TareaAsignadaSerializer(serializers.ModelSerializer):
     nombre_tarea = serializers.ReadOnlyField(source='tarea.nombre')
     descripcion_tarea = serializers.ReadOnlyField(source='tarea.descripcion')
+    nombre_usuario = serializers.ReadOnlyField(source='usuario.username')
+    nombre_funcion = serializers.ReadOnlyField(source='funcion.nombre')
 
     class Meta:
         model = TareaAsignada
-        fields = ['id', 'nombre_tarea', 'descripcion_tarea', 'url', 'fecha_inicio', 'fecha_termino', 'terminada', 'tarea', 'asignado', 'funcion']
+        fields = ['id', 'nombre_tarea', 'descripcion_tarea', 'url', 'fecha_inicio', 'fecha_termino', 'terminada', 'tarea', 'nombre_tarea', 'usuario', 'nombre_usuario', 'funcion', 'nombre_funcion']
 
 
