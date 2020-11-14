@@ -41,7 +41,7 @@ class Tarea(models.Model):
 class Unidad(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=200)
-    empresa = models.ForeignKey('Empresa', on_delete=models.CASCADE)
+    empresa = models.ForeignKey('Empresa', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.nombre
@@ -54,8 +54,8 @@ class Funcion(models.Model):
     fecha_termino = models.DateField()
     porcentaje_realizacion = models.IntegerField()
     tarea = models.ForeignKey('Tarea', on_delete=models.CASCADE, blank=True, null=True)
-    usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
-    unidad = models.ForeignKey('Unidad', on_delete=models.CASCADE)
+    usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, blank=True, null=True)
+    unidad = models.ForeignKey('Unidad', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.nombre
@@ -66,8 +66,8 @@ class TareaAsignada(models.Model):
     fecha_termino = models.DateField()
     terminada = models.BooleanField(default=False)
     tarea = models.ForeignKey('Tarea', on_delete=models.CASCADE)
-    usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
-    funcion = models.ForeignKey('Funcion', on_delete=models.CASCADE)
+    usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, blank=True, null=True)
+    funcion = models.ForeignKey('Funcion', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.tarea.nombre
