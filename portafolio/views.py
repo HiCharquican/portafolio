@@ -10,6 +10,10 @@ from rest_framework.response  import Response
 from rest_framework  import status
 from rest_framework.authtoken.models import Token
 
+### PROCEDURES
+from django.db import connection
+import cx_Oracle, json
+
 class PermissionViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
@@ -62,6 +66,33 @@ def Logout(request, token, format = None):
         return JsonResponse({
             'status': 400
         }, status=400)
+
+class UserViewSet(viewsets.ViewSet):
+    serializer_class = UsuarioSerializer
+
+    def create(self, request):
+        if request.method == 'POST':
+            print (request)
+            print (request)
+            print (request)
+            print (request)
+            print (request)
+            print (request)
+            print (request)
+
+
+
+class UserPaController():
+    def crear_editar_usuario(self, id, username, password, nombre, apellido, email, telefono,direccion,region,rol_usuario_id, is_active, is_staff, is_superuser):
+        django_cursor = connection.cursor()
+        cursor = django_cursor.connection.cursor()
+        salida = cursor.var(cx_Oracle.NUMBER)
+        cursor.callproc('SP_CREAR_EDITAR_USUARIO', [username, password, nombre, apellido, email, telefono,direccion,region,rol_usuario_id, is_active, is_staff, is_superuser])
+        return salida.getvalue()
+
+        
+manejadoraUsuario = UserPaController()
+
     
 
 

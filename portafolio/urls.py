@@ -2,6 +2,7 @@ from django.urls import include, path
 from rest_framework import routers
 from portafolio import views
 from rest_framework.authtoken import views as viewstoken
+from .views import *
 
 router = routers.DefaultRouter()
 router.register(r'roles', views.GroupViewSet)
@@ -19,4 +20,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('<token>/', views.CuttentToken),
     path('logout/<token>/', views.Logout),
+    path('users', UserViewSet.as_view({'post': 'create'}), name="user_view")
 ]
