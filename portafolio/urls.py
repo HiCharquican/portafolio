@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import include, path, re_path
 from rest_framework import routers
 from portafolio import views
 from rest_framework.authtoken import views as viewstoken
@@ -13,6 +13,8 @@ router.register(r'tareas', views.TareaViewSet)
 router.register(r'unidades', views.UnidadViewSet)
 router.register(r'funciones', views.FuncionViewSet)
 router.register(r'tareas_asignadas', views.TareaAsignadaViewSet)
+router.register(r'reportes', views.ReporteViewSet)
+router.register(r'indicacion_tarea', views.IndicacionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

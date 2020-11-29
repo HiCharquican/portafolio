@@ -3,6 +3,7 @@ from portafolio.serializers import *
 from .models import *
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
+from rest_framework import generics
 
 ### TOKEN
 from django.http import JsonResponse
@@ -54,10 +55,22 @@ class TareaAsignadaViewSet(viewsets.ModelViewSet):
     serializer_class = TareaAsignadaSerializer
     permission_classes = [perm.IsAuthenticated]
 
+class ReporteViewSet(viewsets.ModelViewSet):
+    queryset = Reporte.objects.all()
+    serializer_class = ReporteSerializer
+    permission_classes = [perm.IsAuthenticated]
+
+class IndicacionViewSet(viewsets.ModelViewSet):
+    queryset = IndicacionTarea.objects.all()
+    serializer_class = IndicacionTareaSerializer
+    permission_classes = [perm.IsAuthenticated]
+    
+    filter_fields = (['id_tarea',])
+
 def CuttentToken(request, token):
     data = list(Token.objects.filter(pk=token).values())
     return JsonResponse(data, safe=False)
-    
+
 def Logout(request, token, format = None):
     if (Token.objects.filter(pk=token).values()):
         Token.objects.filter(pk=token).delete()

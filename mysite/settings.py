@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
 
     # REST FRAMEWORK
     'rest_framework',
@@ -61,15 +62,8 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/xe',
-        'USER': 'c##database',
-        'PASSWORD': 'oracle',
-        'TEST': {
-            'USER': 'default_test',
-            'TBLSPACE': 'default_test_tbls',
-            'TBLSPACE_TMP': 'default_test_tbls_tmp',
-        },
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
     }
     #  AWS BDD
     # 'default': {
@@ -108,6 +102,7 @@ if DEBUG:
     )
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     "DEFAULT_AUTHENTICATION_CLASSES": [
