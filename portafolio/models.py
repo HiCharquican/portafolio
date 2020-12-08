@@ -53,8 +53,6 @@ class Funcion(models.Model):
     fecha_inicio = models.DateField()
     fecha_termino = models.DateField()
     porcentaje_realizacion = models.IntegerField()
-    tarea = models.ForeignKey('Tarea', on_delete=models.CASCADE, blank=True, null=True)
-    usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, blank=True, null=True)
     unidad = models.ForeignKey('Unidad', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):

@@ -3,10 +3,11 @@ from django.contrib.auth.models import Group
 from .models import *
 from django.contrib.auth.models import Permission
 from django.contrib.auth.hashers import make_password
-
-
-
 from rest_framework.authtoken.models import Token
+
+import cx_Oracle
+from django.db import connection
+
 
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -33,7 +34,6 @@ class UsuarioSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         validated_data['password'] = make_password(validated_data.get('password'))
-
         instance.username = validated_data.get('username', instance.username)
         instance.password = validated_data.get('password', instance.password)
         instance.rut = validated_data.get('rut', instance.rut)

@@ -4,11 +4,17 @@ from .models import *
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
 
+from rest_framework.decorators import action
+
 ### TOKEN
 from django.http import JsonResponse
 from rest_framework.response  import Response
 from rest_framework  import status
 from rest_framework.authtoken.models import Token
+
+### ¿?
+
+from django.views.decorators.csrf import csrf_exempt
 
 ### PROCEDURES
 from django.db import connection
@@ -68,18 +74,14 @@ def Logout(request, token, format = None):
         }, status=400)
 
 class UserViewSet(viewsets.ViewSet):
-    serializer_class = UsuarioSerializer
-
     def create(self, request):
-        if request.method == 'POST':
-            print (request)
-            print (request)
-            print (request)
-            print (request)
-            print (request)
-            print (request)
-            print (request)
-
+        print ("request")
+        print ("request")
+        print ("request")
+        print ("request")
+        print ("request")
+        print ("request")
+        return HttpResponse("Your response")
 
 
 class UserPaController():

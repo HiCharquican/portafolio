@@ -20,5 +20,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('<token>/', views.CuttentToken),
     path('logout/<token>/', views.Logout),
-    path('users', UserViewSet.as_view({'post': 'create'}), name="user_view")
+    path('users/', UserViewSet.as_view({'POST': 'create'}), name="user_view")
 ]
