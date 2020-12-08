@@ -68,7 +68,7 @@ class IndicacionTarea(models.Model):
     usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, blank=True, null=True)
     
     def __str__(self):
-            return self.id_tarea.tarea.nombre
+            return self.indicaciones
 
 class TareaAsignada(models.Model):
     fecha_inicio = models.DateField()

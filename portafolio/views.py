@@ -13,7 +13,7 @@ from rest_framework.authtoken.models import Token
 
 ### PROCEDURES
 from django.db import connection
-import cx_Oracle, json
+# import cx_Oracle, json
 
 class PermissionViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Permission.objects.all()
@@ -54,6 +54,8 @@ class TareaAsignadaViewSet(viewsets.ModelViewSet):
     queryset = TareaAsignada.objects.all()
     serializer_class = TareaAsignadaSerializer
     permission_classes = [perm.IsAuthenticated]
+
+    filter_fields = (['id', 'tarea',])
 
 class ReporteViewSet(viewsets.ModelViewSet):
     queryset = Reporte.objects.all()

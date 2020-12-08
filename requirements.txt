@@ -1,4 +1,5 @@
 Django==3.1.1
 Djangorestframework==3.12.1
-cx_oracle
 django_cors_headers==3.5.0
+django-filter
+cx_oracle
