@@ -71,8 +71,8 @@ class IndicacionTarea(models.Model):
             return self.indicaciones
 
 class TareaAsignada(models.Model):
-    fecha_inicio = models.DateField()
-    fecha_termino = models.DateField()
+    fecha_inicio = models.DateField(blank=True, null=True)
+    fecha_termino = models.DateField(blank=True, null=True)
     terminada = models.BooleanField(default=False)
     tarea = models.ForeignKey('Tarea', on_delete=models.CASCADE)
     usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, blank=True, null=True)

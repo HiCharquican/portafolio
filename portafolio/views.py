@@ -54,6 +54,7 @@ class TareaAsignadaViewSet(viewsets.ModelViewSet):
     queryset = TareaAsignada.objects.all()
     serializer_class = TareaAsignadaSerializer
     permission_classes = [perm.IsAuthenticated]
+    pagination_class = None
 
     filter_fields = (['id', 'tarea',])
 
