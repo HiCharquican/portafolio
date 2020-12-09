@@ -19,11 +19,13 @@ class PermissionViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
     permission_classes = [perm.IsAuthenticated]
+    pagination_class = None
 
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [perm.IsAuthenticated]
+    pagination_class = None
 
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
